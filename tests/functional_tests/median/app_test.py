@@ -14,7 +14,7 @@ MEDIAN_API_URL = 'http://127.0.0.1:8000'
 
 def test_median_returned():
     """Test that when integers are put a median is returned."""
-    integers = [integer for integer in xrange(1, 1000)]
+    integers = [integer for integer in range(1, 1000)]
 
     for integer in integers:
         requests.post(

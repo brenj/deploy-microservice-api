@@ -40,5 +40,5 @@ def remove_old_integers():
     removed = redis_app.zremrangebyscore(
         'integers', '-inf',
         epoch_time - float(os.environ['REMOVE_LAST_X_SECONDS']))
-    print "{0} old elements removed from {1} set.".format(
-        removed, os.environ['MEDIAN_SET_KEY'])
+    print("{0} old elements removed from {1} set.".format(
+        removed, os.environ['MEDIAN_SET_KEY']))
