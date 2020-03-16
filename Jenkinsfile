@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Lint') {
             steps {
-                sh 'python3 -m pylint -d R0201,R0903 --extension-pkg-whitelist=falcon median/'
+                sh 'make lint'
             }
         }
         stage('Dockerize') {
