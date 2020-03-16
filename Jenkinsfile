@@ -4,7 +4,7 @@ pipeline {
         stage('Lint') {
             steps {
                 sh 'make install'
-                sh 'pylint -d R0201,R0903 median/'
+                sh 'python3 -m pylint -d R0201,R0903 median/'
             }
         }
     }
