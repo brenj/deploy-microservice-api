@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Publish') {
             steps {
-                withDockerRegistry([credentialsId: "docker-hub"]) {
+                withDockerRegistry([credentialsId: "docker-hub", url: "https://hub.docker.com/repository/docker/brenj/deploy-microservice-api"]) {
                     sh 'docker push brenj/deploy-microservice-api'
                 }
             }
