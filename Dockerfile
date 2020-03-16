@@ -13,7 +13,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         redis-server=5:4.0.9-1ubuntu0.2 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-RUN pip3 install --upgrade pip==20.0.2 && pip3 install -r requirements.txt
+RUN pip3 install --upgrade pip==20.0.2 \
+    && pip3 install setuptools==46.0.0 \
+    && pip3 install -r requirements.txt
 
 EXPOSE 8000
 
