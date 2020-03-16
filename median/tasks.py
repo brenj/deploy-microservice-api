@@ -27,7 +27,7 @@ def get_median_for_last_min(task, from_time):
         os.environ['MEDIAN_SET_KEY'],
         epoch_time - float(os.environ['MEDIAN_LAST_X_SECONDS']), epoch_time)
     # elements e.g. ['7d529dd4-548b-4258-aa8e-23e34dc8d43d:200', ...]
-    integers = [int(element.split(':')[1]) for element in elements]
+    integers = [int(element.split(b':')[1]) for element in elements]
 
     # Don't give numpy an empty list
     return numpy.median(integers or 0)

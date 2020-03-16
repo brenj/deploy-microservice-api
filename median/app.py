@@ -23,7 +23,7 @@ class IntegerResource(object):
         element_name = ':'.join(map(str, (id_, integer)))
 
         elements_added = redis_app.zadd(
-            os.environ['MEDIAN_SET_KEY'], time.time(), element_name)
+            os.environ['MEDIAN_SET_KEY'], {element_name: time.time()})
         added_successfully = elements_added == 1
 
         resp.status = (
@@ -56,6 +56,7 @@ class ResultResource(object):
 
 
 app = falcon.API()
+app.req_options.auto_parse_form_urlencoded = True
 
 app.add_route('/put', IntegerResource())
 app.add_route('/median', MedianResource())
