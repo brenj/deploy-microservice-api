@@ -2,4 +2,4 @@
 
 import redis
 
-redis_app = redis.StrictRedis()
+REDIS_APP = redis.StrictRedis()

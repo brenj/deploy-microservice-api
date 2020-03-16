@@ -4,7 +4,7 @@ install:
 
 lint:
 	docker run --rm -i hadolint/hadolint < Dockerfile
-	pylint median/
+	pylint -d R0201,R0903 median/
 
 microservice:
 	honcho start

@@ -7,11 +7,11 @@ import uuid
 
 import falcon
 
-from median.persistence import redis_app
-from median.tasks import celery_app, get_median_for_last_min
+from median.persistence import REDIS_APP
+from median.tasks import CELERY_APP, get_median_for_last_min
 
 
-class IntegerResource(object):
+class IntegerResource():
     """Resource for managing the integers used to calculate a median."""
 
     def on_post(self, req, resp):
@@ -22,7 +22,7 @@ class IntegerResource(object):
         id_ = uuid.uuid4()
         element_name = ':'.join(map(str, (id_, integer)))
 
-        elements_added = redis_app.zadd(
+        elements_added = REDIS_APP.zadd(
             os.environ['MEDIAN_SET_KEY'], {element_name: time.time()})
         added_successfully = elements_added == 1
 
@@ -30,12 +30,14 @@ class IntegerResource(object):
             falcon.HTTP_201 if added_successfully else falcon.HTTP_500)
 
 
-class MedianResource(object):
+class MedianResource():
     """Resource for managing the calculation of a median."""
 
     def on_get(self, req, resp):
         """Handle requests for the median in the last minute."""
-        task = get_median_for_last_min.delay(time.time())
+        del req # unused
+
+        task = get_median_for_last_min.delay()
 
         result_url = os.path.join(
             os.environ['MEDIAN_API_URL'], 'result', task.id)
@@ -43,21 +45,23 @@ class MedianResource(object):
         resp.status = falcon.HTTP_200
 
 
-class ResultResource(object):
+class ResultResource():
     """Resource for retrieving a median result."""
 
     def on_get(self, req, resp, task_id):
         """Handle requests for a median result."""
-        task = celery_app.AsyncResult(task_id)
+        del req # unused
+
+        task = CELERY_APP.AsyncResult(task_id)
 
         resp.body = json.dumps(
             {'status': task.status, 'result': str(task.result)})
         resp.status = falcon.HTTP_200
 
 
-app = falcon.API()
-app.req_options.auto_parse_form_urlencoded = True
+APP = falcon.API()
+APP.req_options.auto_parse_form_urlencoded = True
 
-app.add_route('/put', IntegerResource())
-app.add_route('/median', MedianResource())
-app.add_route('/result/{task_id}', ResultResource())
+APP.add_route('/put', IntegerResource())
+APP.add_route('/median', MedianResource())
+APP.add_route('/result/{task_id}', ResultResource())

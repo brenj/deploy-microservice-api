@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Lint') {
             steps {
-                sh 'pylint median/'
+                sh 'pylint -d R0201,R0903 median/'
             }
         }
     }

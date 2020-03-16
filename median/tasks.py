@@ -6,24 +6,21 @@ import time
 import celery
 import numpy
 
-from median.persistence import redis_app
+from median.persistence import REDIS_APP
 
-celery_app = celery.Celery()
-celery_app.config_from_object('median.settings')
+CELERY_APP = celery.Celery()
+CELERY_APP.config_from_object('median.settings')
 
 
-@celery_app.task(bind=True)
-def get_median_for_last_min(task, from_time):
+@CELERY_APP.task()
+def get_median_for_last_min():
     """Get the median for the last minute from a specified time.
-
-    Args:
-        from_time (float): Request time in seconds since the epoch.
 
     Returns:
         int: The median for the last minute.
     """
     epoch_time = time.time()
-    elements = redis_app.zrangebyscore(
+    elements = REDIS_APP.zrangebyscore(
         os.environ['MEDIAN_SET_KEY'],
         epoch_time - float(os.environ['MEDIAN_LAST_X_SECONDS']), epoch_time)
     # elements e.g. ['7d529dd4-548b-4258-aa8e-23e34dc8d43d:200', ...]
@@ -33,11 +30,11 @@ def get_median_for_last_min(task, from_time):
     return numpy.median(integers or 0)
 
 
-@celery_app.task()
+@CELERY_APP.task()
 def remove_old_integers():
     """Remove integers that will not be included in median calculation."""
     epoch_time = time.time()
-    removed = redis_app.zremrangebyscore(
+    removed = REDIS_APP.zremrangebyscore(
         'integers', '-inf',
         epoch_time - float(os.environ['REMOVE_LAST_X_SECONDS']))
     print("{0} old elements removed from {1} set.".format(
