@@ -5,7 +5,7 @@ install:
 
 lint:
 	docker run --rm -i hadolint/hadolint < Dockerfile
-	python3 -m pylint -d R0201,R0903 median/
+	python3 -m pylint -d R0201,R0903 --extension-pkg-whitelist=falcon median/
 
 microservice:
 	honcho start
