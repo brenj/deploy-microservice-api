@@ -1,3 +1,6 @@
+docker:
+	docker build -t brenj/deploy-microservice-api -f Dockerfile .
+
 install:
 	pip3 install --upgrade pip
 	pip3 install -r requirements.txt
