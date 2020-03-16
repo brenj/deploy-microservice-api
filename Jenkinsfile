@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Lint') {
             steps {
-                sh 'pylint median/'
+                sh 'python3 -m pylint median/'
             }
         }
     }
