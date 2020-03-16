@@ -16,5 +16,12 @@ pipeline {
                 sh 'make docker'
             }
         }
+        stage('Publish') {
+            steps {
+                withDockerRegistry([credentialsId: "docker-hub"]) {
+                    sh 'docker push brenj/deploy-microservice-api'
+                }
+            }
+        }
     }
 }
