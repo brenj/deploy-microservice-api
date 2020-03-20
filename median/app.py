@@ -62,7 +62,7 @@ class ResultResource():
 class AboutResource():
     """Resource for retrieving information about this api."""
 
-    def on_get(self, req, resp, task_id):
+    def on_get(self, req, resp):
         """Handle requests for a median result."""
         del req # unused
 
