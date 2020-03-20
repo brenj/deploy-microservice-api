@@ -80,6 +80,12 @@ content-type: application/json; charset=utf-8
 }
 ```
 
+Screenshots
+-----------
+
+Full Jenkins Pipeline
+![Full Jenkins Pipeline](full_jenkins_pipeline.png)
+
 Grading (by Udacity)
 --------------------
 Criteria                              |Highest Grade Possible  |Grade Recieved
