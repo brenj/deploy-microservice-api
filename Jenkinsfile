@@ -19,7 +19,7 @@ pipeline {
         stage('Publish') {
             steps {
                 withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
-                    sh 'docker push brenj/deploy-microservice-api'
+                    sh 'docker push brenj/deploy-microservice-api:`cat VERSION`'
                 }
             }
         }
