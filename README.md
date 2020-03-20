@@ -4,9 +4,12 @@ Project: Capstone
 About
 -----
 From Udacity:
-> In the capstone project, each project is unique to the student. You’ll build a CI/CD pipeline for a microservices application for different deployment strategies. Students define the scope of the project and select the right deployment strategy based on different business requirements.
+> In the capstone project, each project is unique to the student. You’ll
+build a CI/CD pipeline for a microservices application for different deployment
+strategies. Students define the scope of the project and select the right
+deployment strategy based on different business requirements.
 
-> The project code I chose to build my CI/CD pipeline around is a median
+The project code I chose to build my CI/CD pipeline around is a median
 microservice. It is a REST api that allows the submission of integer values
 and the asynchronous retrieval of a median for the set of submitted integers
 over a certain interval (one minute by default). Among other technologies, it
@@ -21,15 +24,12 @@ Requirements
 Configuration
 -------------
 All app configuration is accomplished by environmental variables. See .env.
-------
 
 Deploy
 ------
-```cnnsole
-create-eks-stack
-make kubernetes-eks
-make kubernetes-eks-deploy
-```
+`create-eks-stack`
+`make kubernetes-eks`
+`make kubernetes-eks-deploy`
 
 Usage Example
 -------------
@@ -80,3 +80,11 @@ content-type: application/json; charset=utf-8
     "status": "SUCCESS"
 }
 ```
+
+Grading (by Udacity)
+--------------------
+Criteria                              |Highest Grade Possible  |Grade Recieved
+--------------------------------------|------------------------|--------------------
+Set Up Pipeline                       |Meets Specifications    |
+Build Docker Container                |Meets Specifications    |
+Successful Deployment                 |Meets Specifications    |
