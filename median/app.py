@@ -59,9 +59,21 @@ class ResultResource():
         resp.status = falcon.HTTP_200
 
 
+class AboutResource():
+    """Resource for retrieving information about this api."""
+
+    def on_get(self, req, resp, task_id):
+        """Handle requests for a median result."""
+        del req # unused
+
+        resp.body = json.dumps({'version': os.environ['MEDIAN_API_VERSION']})
+        resp.status = falcon.HTTP_200
+
+
 APP = falcon.API()
 APP.req_options.auto_parse_form_urlencoded = True
 
+APP.add_route('/about', AboutResource())
 APP.add_route('/put', IntegerResource())
 APP.add_route('/median', MedianResource())
 APP.add_route('/result/{task_id}', ResultResource())
