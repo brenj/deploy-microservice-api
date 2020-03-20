@@ -6,6 +6,7 @@ COPY .env /app
 COPY median /app/median
 COPY Procfile /app
 COPY requirements.txt /app
+COPY VERSION /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         python3-pip=9.0.1-2.3~ubuntu1.18.04.1 \
