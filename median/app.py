@@ -2,6 +2,7 @@
 
 import json
 import os
+from pathlib import PurePath
 import time
 import uuid
 
@@ -9,6 +10,8 @@ import falcon
 
 from median.persistence import REDIS_APP
 from median.tasks import CELERY_APP, get_median_for_last_min
+
+API_VERSION_PATH = PurePath('VERSION')
 
 
 class IntegerResource():
@@ -66,8 +69,10 @@ class AboutResource():
         """Handle requests for a median result."""
         del req # unused
 
-        resp.body = json.dumps({'version': os.environ['MEDIAN_API_VERSION']})
-        resp.status = falcon.HTTP_200
+        with open(API_VERSION_PATH, 'r') as api_version_file:
+            resp.body = json.dumps(
+                {'version': api_version_file.read().rstrip()})
+            resp.status = falcon.HTTP_200
 
 
 APP = falcon.API()
