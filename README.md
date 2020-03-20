@@ -19,17 +19,16 @@ Requirements
 ------------
 * AWS Account
 * awscli
-* eksctl
 
 Configuration
 -------------
-All app configuration is accomplished by environmental variables. See .env.
+All app configuration is accomplished by environmental variables. See [.env](.env)
 
 Deploy
 ------
-`create-eks-stack`
-`make kubernetes-eks`
-`make kubernetes-eks-deploy`
+1. `create-eks-stack`
+2. `make kubernetes-eks`
+3. `make kubernetes-eks-deploy` 
 
 Usage Example
 -------------
