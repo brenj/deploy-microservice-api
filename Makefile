@@ -2,7 +2,7 @@ create-eks-stack:
 	aws cloudformation create-stack --stack-name median-microservice-eks --template-body file://aws/eks.yaml --parameters file://aws/eks-params.json
 
 docker:
-	docker build -t brenj/deploy-microservice-api -f Dockerfile .
+	docker build -t brenj/deploy-microservice-api:`cat VERSION` -f Dockerfile .
 
 install:
 	pip3 install --upgrade pip
