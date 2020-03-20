@@ -1,5 +1,5 @@
 create-eks-stack:
-	aws cloudformation create-stack --stack-name median-microservice-eks --template-body file://eks.yaml --parameters file://eks-params.json --capabilities CAPABILITY_NAMED_IAM
+	aws cloudformation create-stack --stack-name median-microservice-eks --template-body file://aws/eks.yaml --parameters file://aws/eks-params.json --capabilities CAPABILITY_NAMED_IAM
 
 docker:
 	docker build -t brenj/deploy-microservice-api -f Dockerfile .
@@ -21,7 +21,7 @@ test:
 	nosetests median/
 
 update-eks-stack:
-	aws cloudformation update-stack --stack-name median-microservice-eks --template-body file://eks.yaml --parameters file://eks-params.json --capabilities CAPABILITY_NAMED_IAM
+	aws cloudformation update-stack --stack-name median-microservice-eks --template-body file://aws/eks.yaml --parameters file://aws/eks-params.json --capabilities CAPABILITY_NAMED_IAM
 
 venv:
 	python3 -m venv venv
