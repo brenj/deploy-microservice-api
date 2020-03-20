@@ -84,7 +84,13 @@ Screenshots
 -----------
 
 Full Jenkins Pipeline
-![Full Jenkins Pipeline](full_jenkins_pipeline.png)
+![Full Jenkins Pipeline](screenshots/full_jenkins_pipeline.png?raw=true)
+
+Before Rolling Deployment
+![Before Rolling Deployment](screenshots/before_rolling_deployment.png?raw=true)
+
+After Rolling Deployment
+![After Rolling Deployment](screenshots/before_rolling_deployment.png?raw=true)
 
 Grading (by Udacity)
 --------------------
