@@ -9,6 +9,13 @@ install:
 	pip3 install -r requirements.txt
 	pip3 install -r test_requirements.txt
 
+kubernetes-eks:
+	aws eks update-kubeconfig --name median-microservice-prod
+
+kubernetes-eks-deploy:
+	kubectl apply -f aws/median-microservice.yaml
+	kubectl apply -f aws/median-microservice-service.yaml
+
 lint:
 	docker run --rm -i hadolint/hadolint < Dockerfile
 	python3 -m pylint -d R0201,R0903 --extension-pkg-whitelist=falcon median/
