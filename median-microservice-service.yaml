@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "service-median-microservice"
+spec:
+  selector:
+    app: median-microservice
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000

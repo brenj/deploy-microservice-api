@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: median-microservice-deployment
+  labels:
+    app: median-microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: median-microservice
+  template:
+    metadata:
+      labels:
+        app: median-microservice
+    spec:
+      containers:
+      - name: median-microservice
+        image: brenj/deploy-microservice-api
+        ports:
+        - containerPort: 8000
