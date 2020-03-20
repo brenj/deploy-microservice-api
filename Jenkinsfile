@@ -23,5 +23,10 @@ pipeline {
                 }
             }
         }
+        stage('Rollout') {
+            steps {
+                sh 'make kubernetes-eks-deploy'
+            }
+        }
     }
 }
