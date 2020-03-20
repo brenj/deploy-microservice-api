@@ -13,7 +13,7 @@ kubernetes-eks:
 	aws eks update-kubeconfig --name median-microservice-prod
 
 kubernetes-eks-deploy:
-	sed "s/\%VERSION\%/`cat VERSION`/" aws/median-microservice.yaml
+	sed -i "s/\%VERSION\%/`cat VERSION`/" aws/median-microservice.yaml
 	kubectl apply -f aws/median-microservice.yaml
 	kubectl apply -f aws/median-microservice-service.yaml
 
