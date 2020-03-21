@@ -96,6 +96,6 @@ Grading (by Udacity)
 --------------------
 Criteria                              |Highest Grade Possible  |Grade Recieved
 --------------------------------------|------------------------|--------------------
-Set Up Pipeline                       |Meets Specifications    |
-Build Docker Container                |Meets Specifications    |
-Successful Deployment                 |Meets Specifications    |
+Set Up Pipeline                       |Meets Specifications    |Meets Specifications
+Build Docker Container                |Meets Specifications    |Meets Specifications
+Successful Deployment                 |Meets Specifications    |Meets Specifications
