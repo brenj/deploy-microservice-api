@@ -90,7 +90,7 @@ Before Rolling Deployment
 ![Before Rolling Deployment](screenshots/before_rolling_deployment.png?raw=true)
 
 After Rolling Deployment
-![After Rolling Deployment](screenshots/before_rolling_deployment.png?raw=true)
+![After Rolling Deployment](screenshots/after_rolling_deployment.png?raw=true)
 
 Grading (by Udacity)
 --------------------
